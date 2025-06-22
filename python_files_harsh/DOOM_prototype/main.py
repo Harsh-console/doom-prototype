@@ -57,7 +57,6 @@ def can_move(x, y):
             return False
     return True
 
-
 while True:
     ray_lis = []
     screen.fill((0,0,0))
@@ -107,20 +106,22 @@ while True:
             map_ray_x = int(ray_x // TILE)
             map_ray_y = int(ray_y // TILE)
             if MAP[map_ray_y][map_ray_x]:
-                pygame.draw.line(screen, "Light Blue", player_rect.center, (ray_x, ray_y))
+                #pygame.draw.line(screen, "Light Blue", player_rect.center, (ray_x, ray_y))
                 
                 hit_wall = True
                 d = depth * STEP
                 break
         if not hit_wall:
-            pygame.draw.line(screen, "Light Blue", player_rect.center, (ray_x, ray_y))
+            #pygame.draw.line(screen, "Light Blue", player_rect.center, (ray_x, ray_y))
             d = MAX_DEPTH
         
         x_screen = i * STEP_SCREEN
-        if H >= h:
-            start_pos_screen_line = (x_screen,(SCREEN_SIZE[1] / 2) - ((H-h) / d ) * projection_scaling_factor )
-            end_pos_screen_line = (x_screen, (SCREEN_SIZE[1] / 2) + (H / d) * projection_scaling_factor)
-            pygame.draw.line(screen, "White", start_pos_screen_line, end_pos_screen_line)
+        if d != 0:
+            if H >= h:
+                start_pos_screen_line = (x_screen,(SCREEN_SIZE[1] / 2) - ((H-h) / d ) * projection_scaling_factor )
+                end_pos_screen_line = (x_screen, (SCREEN_SIZE[1] / 2) + (H / d) * projection_scaling_factor)
+                pygame.draw.line(screen, "White", start_pos_screen_line, end_pos_screen_line)
+
 
     #pygame
     if clock.get_fps() < 45:
@@ -128,4 +129,5 @@ while True:
     else:
         NUM_RAYS = min(300, NUM_RAYS + 10)
     clock.tick(fps)
+    pygame.display.flip()
     pygame.display.update()

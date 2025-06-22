@@ -152,6 +152,7 @@ while running:
     draw_map_2d()
 
     pygame.display.flip()
+    pygame.display.set_caption(str(clock.get_fps()))
     clock.tick(60)
 
 pygame.quit()

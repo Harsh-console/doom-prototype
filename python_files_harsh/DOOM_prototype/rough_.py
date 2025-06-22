@@ -123,9 +123,9 @@ while True:
                 hit_wall = True
                 break
 
-        # Optionally draw ray (debug)
-        # if i % 10 == 0:
-        #     pygame.draw.line(screen, "lightblue", player_rect.center, (ray_x, ray_y))
+         #Optionally draw ray (debug)
+        if i % 10 == 0:
+             pygame.draw.line(screen, "lightblue", player_rect.center, (ray_x, ray_y))
 
         # Wall projection
         x_screen = i * STEP_SCREEN
