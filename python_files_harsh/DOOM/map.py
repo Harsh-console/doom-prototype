@@ -1,5 +1,5 @@
 from typing import Any
-import pygame as pg
+import pygame
 from settings import *
 
 _ = False
@@ -11,8 +11,8 @@ mini_map = [
     [1, _, _, _, _, _, 1, _, _, _, _, _, 1, _, _, 1],
     [1, _, _, 1, 1, 1, 1, _, _, _, _, _, _, _, _, 1],
     [1, _, _, _, _, _, _, _, _, _, _, _, _, _, _, 1],
-    [1, _, _, 1, _, _, _, 1, _, _, _, _, _, _, _, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _, _, _, 1],
+    [1, _, _, _, _, _, _, _, _, _, _, _, _, _, _, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
 class MAP:
@@ -29,5 +29,5 @@ class MAP:
                     self.world_map[(i,j)] = value
     
     def draw(self):
-        [pg.draw.rect(self.game.screen, 'darkgray', (int(pos[0]*(WIDTH / len(mini_map[0])), int(pos[1] * ( HEIGHT / len(mini_map)))), int(WIDTH / len(mini_map[0]))), int(( HEIGHT / len(mini_map))), 2)
+        [pygame.draw.rect(self.game.screen, "darkgray", (pos[0] * (WIDTH // len(mini_map[0])), pos[1] * (HEIGHT // len(mini_map)), (WIDTH // len(mini_map[0])), (HEIGHT // len(mini_map))), 2)
         for pos in self.world_map]
