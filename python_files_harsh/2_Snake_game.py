@@ -6,13 +6,14 @@ RES = WIDTH, HEIGHT = 1200, 600
 FPS = 60
 TILE = 30
 FOOD_RADIUS = int(TILE / 2)
-HEAD_COLOR = (0, 255, 0)       # Neon Green - easily visible
-TAIL_COLOR = (0, 180, 0)       # Softer green - to differentiate from head
-FOOD_COLOR = (255, 105, 180)   # Hot Pink - bright and stands out
-LINE_COLOR = (50, 50, 50)      # Dark Gray – clean and subtle
+HEAD_COLOR = (0, 255, 180)        # Bright Neon Mint (Head)
+TAIL_COLOR = (0, 120, 255)        # Bright Sky Blue (Tail)
+FOOD_COLOR = (255, 20, 147)       # Neon Pink (Food)
+BG_COLOR   = (10, 10, 30)         # Dark Blue-Black (Background)
+LINE_COLOR = (40, 40, 60)         # Subtle Grid
 BLOCK_SEGMENT = []
 dir = 0 # 0:stop, 1: up, 2: right, 3: down, 4: left
-history = [] # store snake block postions for tail to follow
+history = [] # store snake head previous postions for tail to follow
 
 def random_food_pos():
     x = random.randint(0, (WIDTH - TILE)//TILE)
@@ -32,7 +33,7 @@ class Game:
         for i in range(int(HEIGHT/TILE)):
             pygame.draw.line(self.screen, LINE_COLOR, (0, i*TILE), (WIDTH, i*TILE))
     def start_game(self):
-        self.screen.fill('Black')
+        self.screen.fill(BG_COLOR)
         #BLOCK_SEGMENT.clear()
         self.head = Snake(HEAD_COLOR, self, random_food_pos())
         self.food = Food(self)
@@ -48,7 +49,7 @@ class Game:
         if keys[pygame.K_DOWN] and dir != 1: dir = 3
         if keys[pygame.K_LEFT] and dir != 2: dir = 4
     def draw(self):
-        self.screen.fill('Black')
+        self.screen.fill(BG_COLOR)
         for block in BLOCK_SEGMENT:
             block.draw()
         self.food.draw()
@@ -57,10 +58,14 @@ class Game:
         pygame.display.update()
         pygame.display.set_caption(f'FPS : {self.clock.get_fps() :.1f} ' + f', Score : {self.score}')
     def move_snake(self):
+        global history
         self.frame_count += 1
         if self.frame_count % self.snake_speed != 0:
             return 1
         head = BLOCK_SEGMENT[0].rect
+        history.append(head.topleft)
+        if len(history) > 1000:
+            history.pop(0)
         if dir == 1: head.y -= TILE
         if dir == 2: head.x += TILE
         if dir == 3: head.y += TILE
@@ -82,13 +87,17 @@ class Game:
             new_tail = Snake(TAIL_COLOR, game, (last_pos_x, last_pos_y))
     def move_snake_tail(self):
         for i in range(1, len(BLOCK_SEGMENT)):
-            BLOCK_SEGMENT[i].rect.topleft = BLOCK_SEGMENT[i-1].rect.topleft
+            #BLOCK_SEGMENT[i].rect.topleft = BLOCK_SEGMENT[i-1].rect.topleft
+            delay = i*1
+            if len(history) > delay:
+                BLOCK_SEGMENT[i].rect.topleft = history[-delay-1]
+
     def run(self):
         self.start_game()
         while True:
             self.check_events()
-            self.move_snake_tail()
             self.move_snake()
+            self.move_snake_tail()
             self.update()
             self.draw()
             self.draw_map()
