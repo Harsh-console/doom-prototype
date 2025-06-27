@@ -218,7 +218,8 @@ while running:
                     selected_pos = None
                     possible_moves = []
 
-    clock.tick(60)
+    clock.tick(1000)
+    pygame.display.set_caption(str(clock.get_fps()))
 
 pygame.quit()
 sys.exit()
