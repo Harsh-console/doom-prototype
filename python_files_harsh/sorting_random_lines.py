@@ -30,9 +30,9 @@ def one_step_insertion_sort(lis):
     temp_num = lis[step]
     for j in range(1, step+1):
         k = step - j
-        if lis[k] > temp_num:
+        if lis[k] < temp_num:
             lis[k+1] = lis[k]
-        if lis[k]  < temp_num:
+        if lis[k]  > temp_num:
             break
         lis[k] = temp_num
     return lis

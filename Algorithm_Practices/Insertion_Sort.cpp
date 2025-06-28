@@ -1,6 +1,6 @@
 #include<iostream>
 int main(){
-    int lis[] = {5, 9, 8, 3, 1, 2, 7, 4, 6, 10};
+    int lis[] = {5, 9, 8, 3, 1, 2, 7, 4, 6, 10, 0};
     int length = sizeof(lis) / sizeof(lis[0]);
     for (int i = 1; i < length; i++){
         int temp_num = lis[i];

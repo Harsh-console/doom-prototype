@@ -3,8 +3,8 @@ import random
 RES = WIDTH, HEIGHT = 1200, 600
 screen = pygame.display.set_mode(RES)
 clock = pygame.time.Clock()
-LINE_WIDTH = 3
-FPS = 3
+LINE_WIDTH = 1
+FPS = 30
 MIN_HEIGHT = 3
 MAX_HEIGHT = HEIGHT
 line_list = []
@@ -21,6 +21,7 @@ def draw_random_lines(height_list):
         pygame.draw.line(screen, LINE_COLOR, (x, BASE_COORDINATE), (x, height))
 #insetion sort
 def sort_list(lis):
+    return lis
     for i in range(0,len(lis)):
         temp_num = lis[i]
         for j in range(1, i+1):
