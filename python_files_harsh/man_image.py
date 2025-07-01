@@ -2,7 +2,7 @@ import pygame
 screen = pygame.display.set_mode((1200,600))
 clock = pygame.time.Clock()
 
-man_surface = pygame.image.load('man.png')
+man_surface = pygame.image.load('man.png').convert_alpha()
 man_rect = man_surface.get_rect(topleft = (500,300))
 
 while True:
