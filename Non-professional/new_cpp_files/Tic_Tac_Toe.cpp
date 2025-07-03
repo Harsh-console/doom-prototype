@@ -3,7 +3,7 @@
 char user_in;
 char comp_in;
 bool gameOver;
-gameOver = false;
+bool gameOver = false;
 char a = 'a';
 char b = 'b';
 char c = 'c';
@@ -16,7 +16,7 @@ char i = 'i';
 void Setup()
 {
     std::string Row1 = "  " + a + "  |  " + b + "  |  c  ";
-    std::string Row2 = "  " + d + "  |  e  |  f  ";
+    std::string Row2 = "  " + d + "  |  "+e+"  |  f  ";
     std::string Row3 = "  g  |  h  |  i  ";
     std::string Gap1 = "_____|_____|_____";
     std::string Gap2 = "_____|_____|_____";
