@@ -1,0 +1,60 @@
+No, OpenGL resources such as buffers, textures, and shaders are not automatically cleaned up 
+by OpenGL itself when your application exits.
+ However, most modern operating systems will reclaim all process memory
+and GPU resources when your program terminates. 
+It's still considered good practice to explicitly delete OpenGL resources
+ (using functions like glDeleteBuffers, glDeleteTextures, glDeleteProgram, etc.) 
+ before your application exits, especially if you plan to reload or restart OpenGL
+  contexts within the same process.
+
+
+If you want to ensure OpenGL resources are cleaned up even if you close my_app.exe unexpectedly 
+(e.g., via task manager or crash), there is no way to guarantee cleanup from within your
+ application—because the process is forcibly terminated and cleanup code 
+ (like destructors or atexit handlers) will not run. The operating system will reclaim
+  memory and most GPU resources, but for proper cleanup, always close the application 
+  normally so your cleanup code can execute.
+
+
+
+
+
+
+
+
+###########################%%%%%%%%%%%%%%%%%%%%%%#######################$$$$$$$$$$$$$$$$$$$$$$$
+Upload following simulatneously:
+
+################################################################################################
+
+cd /c/Users/USER/projects/helloworld/Code_Practice/openGL/
+alias gxx="/ucrt64/bin/g++"
+gxx main.cpp src/glad.c -Iinclude -L/ucrt64/lib -lglfw3 -lopengl32 -lgdi32 -o my_app.exe
+./my_app.exe
+
+
+##################################################################################################
+C:/Users/USER/projects/helloworld/Code_Practice/openGL/
+
+MSYS2 PAth :
+cd /c/Users/USER/projects/helloworld/Code_Practice/openGL/
+not above one , use below one(both are same :-):
+cd /c/Users/USER/projects/helloworld/Code_Practice/openGL/
+then : 
+/ucrt64/bin/g++ --version
+
+How to Compile:
+/ucrt64/bin/g++ main.cpp src/glad.c -Iinclude -L/ucrt64/lib -lglfw3 -lopengl32 -lgdi32 -o my_app.exe
+then, 
+./my_app.exe
+also add:
+/ucrt64/bin/g++
+then, 
+/ucrt64/bin/g++ main.cpp src/glad.c -Iinclude -L/ucrt64/lib -lglfw3 -lopengl32 -lgdi32 -o donut.exe
+then, 
+alias gxx="/ucrt64/bin/g++"
+then, 
+gxx main.cpp src/glad.c -Iinclude -L/ucrt64/lib -lglfw3 -lopengl32 -lgdi32 -o my_app.exe
+then, 
+./donut.exe
+
